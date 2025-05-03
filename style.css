@@ -1,0 +1,147 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    overflow-x: hidden;
+  }
+  
+  /* Navbar base */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #1e1e1e;
+    position: relative;
+    z-index: 100;
+  }
+  
+  /* Logo with transform animation */
+  .logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #00bcd4;
+    animation: logoSlide 1s ease forwards;
+    opacity: 0;
+  }
+  
+  @keyframes logoSlide {
+    0% {
+      transform: translateX(-50px) rotate(-10deg);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0) rotate(0deg);
+      opacity: 1;
+    }
+  }
+  
+  /* Nav links (desktop) */
+  .nav-links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+  }
+  
+  .nav-links li {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: calc(var(--i) * 0.2s);
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: #00bcd4;
+  }
+  
+  /* Hamburger icon */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+    z-index: 200;
+  }
+  
+  .menu-toggle span {
+    height: 3px;
+    background: #00bcd4;
+    border-radius: 2px;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  
+  /* Hamburger transform */
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: flex;
+    }
+  
+    .nav-links {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      flex-direction: column;
+      width: 100%;
+      background-color: #1e1e1e;
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+  
+    .nav-links.active {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+  
+    .nav-links li {
+      text-align: center;
+      padding: 15px 0;
+      animation: none;
+    }
+  
+    .nav-links.active li {
+      animation: fadeInUp 0.6s ease forwards;
+      animation-delay: calc(var(--i) * 0.2s);
+    }
+  }
+  
+  /* Nav item animation */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
